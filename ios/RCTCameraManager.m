@@ -851,8 +851,11 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
   else if (self.videoTarget == RCTCameraCaptureTargetDisk) {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths firstObject];
-    NSString *fullPath = [[documentsDirectory stringByAppendingPathComponent:[[NSUUID UUID] UUIDString]] stringByAppendingPathExtension:@"mov"];
-
+      
+    NSString *newPath = [documentsDirectory stringByAppendingPathComponent:@"media"];
+      
+    NSString *fullPath = [[newPath stringByAppendingPathComponent:[[NSUUID UUID] UUIDString]] stringByAppendingPathExtension:@"mov"];
+      
     NSFileManager * fileManager = [NSFileManager defaultManager];
     NSError * error = nil;
 

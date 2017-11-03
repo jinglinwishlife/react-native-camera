@@ -697,9 +697,10 @@ public class RCTCameraModule extends ReactContextBaseJavaModule
 
     private File getOutputFile(int type, File storageDir) {
         // Create the storage directory if it does not exist
-        if (!storageDir.exists()) {
-            if (!storageDir.mkdirs()) {
-                Log.e(TAG, "failed to create directory:" + storageDir.getAbsolutePath());
+        File mediaStorageDir = new File(storageDir, "WishlifeInvite");
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                Log.e(TAG, "failed to create directory:" + mediaStorageDir.getAbsolutePath());
                 return null;
             }
         }
@@ -716,7 +717,7 @@ public class RCTCameraModule extends ReactContextBaseJavaModule
             return null;
         }
 
-        return new File(String.format("%s%s%s", storageDir.getPath(), File.separator, fileName));
+        return new File(String.format("%s%s%s", mediaStorageDir.getPath(), File.separator, fileName));
     }
 
     private File getTempMediaFile(int type) {

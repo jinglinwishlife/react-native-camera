@@ -853,6 +853,10 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
     NSString *documentsDirectory = [paths firstObject];
       
     NSString *newPath = [documentsDirectory stringByAppendingPathComponent:@"media"];
+      if (![[NSFileManager defaultManager] fileExistsAtPath:newPath]) {
+          NSLog(@"Creating media path");
+          [[NSFileManager defaultManager] createDirectoryAtPath:newPath withIntermediateDirectories:true attributes:NULL error:NULL];
+      }
       
     NSString *fullPath = [[newPath stringByAppendingPathComponent:[[NSUUID UUID] UUIDString]] stringByAppendingPathExtension:@"mov"];
       
